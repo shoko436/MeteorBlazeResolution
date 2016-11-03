@@ -33,14 +33,14 @@ if (Meteor.isServer) {
       
       Resolutions.update(id, { $set: { checked: checked } });
     },
-    setPrivate: function (id, private) {
+    setPrivate: function (id, isPrivate) {
       var res = Resolutions.findOne(id);
 
       if (res.owner !== Meteor.userId()) {
         throw new Meteor.Error('not authorized.')
       }
 
-      Resolutions.update(id, { $set: { private: private } });
+      Resolutions.update(id, { $set: { private: isPrivate } });
     }
   });
 }
